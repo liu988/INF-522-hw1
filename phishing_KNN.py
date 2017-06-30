@@ -22,7 +22,7 @@ phishing_set = tf.contrib.learn.datasets.base.load_csv_with_header(
         target_dtype=np.int,
         features_dtype=np.int)
 
-# prep phishing_dataset inputs
+# prep phishing_dataset inputs, test_size: (train=0.6,test=0.4)
 X_training, X_test, Y_training, Y_test = train_test_split(
             phishing_set.data,
             phishing_set.target,
