@@ -2,3 +2,5 @@
 Phishing Website Classification
 
 install tensorflow, sklearn, matplotlib
+
+dataset: phishing_dataset.csv
