@@ -13,7 +13,7 @@ phishing_set = tf.contrib.learn.datasets.base.load_csv_with_header(
         target_dtype=np.int,
         features_dtype=np.int)
 
-# prep phishing_dataset inputs
+# prep phishing_dataset inputs, test_size:(train=0.4,test=0.6)
 X_training, X_test, Y_training, Y_test = train_test_split(
             phishing_set.data,
             phishing_set.target,
@@ -30,7 +30,7 @@ for i in range(len(Y_test)):
 
 feature_columns = [tf.contrib.layers.real_valued_column("", dimension=9)]
 
-# build 3 layer DNN with 10, 20, 10 units respectively.
+# build 3 layer DNN with 10, 20, 10 units respectively. hidden_units:(how many layers, number of neurons)
 mdir = "/tmp/model"
 classifier = tf.contrib.learn.DNNClassifier(feature_columns=feature_columns,
                                               hidden_units=[10,20,10], 
@@ -42,7 +42,7 @@ def get_train_inputs():
     y = tf.constant(Y_training)
     return x, y
 
-# DO THE TRAINING!
+# DO THE TRAINING! steps:(how many times to repeat the whole trainign/testing process untill it converges)
 classifier.fit(input_fn=get_train_inputs, steps=2000)
 
 # prep test inputs
